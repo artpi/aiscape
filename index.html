@@ -39,8 +39,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           This sample demonstrates displaying a 360 degree equirectangular stereo
           photo. It intentionally suppresses view position to ensure that the user
           cannot move out of the photo sphere.
-          <a class="back" href="./">Back</a>
         </p>
+        <h4>Available Scenes</h4>
+        <ul id='scenes'></ul>
       </details>
     </header>
     <script type="module">
@@ -63,7 +64,20 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         },
       ];
 
-      const randomScene = scenes[Math.floor(Math.random() * scenes.length)];
+      const pickedSceneFile = QueryArgs.getString('scene', 'random' );
+      let pickedScene = null;
+      if ( pickedSceneFile !== 'random' ) {
+        pickedScene = scenes.find( (scene) => scene.url === pickedSceneFile );
+      }
+      if ( ! pickedScene || pickedSceneFile === 'random') {
+        pickedScene = scenes[Math.floor(Math.random() * scenes.length)];
+      }
+
+      scenes.forEach((scene) => {
+        let li = document.createElement('li');
+        li.innerHTML = `<a href='?scene=${scene.url}'>${scene.title}</a>`;
+        document.getElementById('scenes').appendChild(li);
+      });
   
       // If requested, use the polyfill to provide support for mobile devices
       // and devices which only support WebVR.
@@ -82,7 +96,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       let renderer = null;
       let scene = new Scene();
       scene.addNode(new SkyboxNode({
-        url: randomScene.url,
+        url: pickedScene.url,
         displayMode: 'mono'
       }));
 
