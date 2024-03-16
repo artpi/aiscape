@@ -52,6 +52,19 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       import {InlineViewerHelper} from './js/util/inline-viewer-helper.js';
       import {QueryArgs} from './js/util/query-args.js';
 
+      const scenes=[
+        {
+          url: 'landscapes/onsen.png',
+          title: 'Onsen town',
+        },
+        {
+          url: 'landscapes/trees.jpeg',
+          title: 'Tree crown',
+        },
+      ];
+
+      const randomScene = scenes[Math.floor(Math.random() * scenes.length)];
+  
       // If requested, use the polyfill to provide support for mobile devices
       // and devices which only support WebVR.
       import WebXRPolyfill from './js/third-party/webxr-polyfill/build/webxr-polyfill.module.js';
@@ -69,8 +82,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       let renderer = null;
       let scene = new Scene();
       scene.addNode(new SkyboxNode({
-        url: 'media/textures/chess-pano-4k.png',
-        displayMode: 'stereoTopBottom'
+        url: randomScene.url,
+        displayMode: 'mono'
       }));
 
       function initXR() {
