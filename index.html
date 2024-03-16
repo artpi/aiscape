@@ -29,20 +29,28 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <link rel='icon' type='image/png' sizes='96x96' href='favicon-96x96.png'>
     <link rel='stylesheet' href='css/common.css'>
 
-    <title>360 Photos</title>
+    <title>AIScape</title>
   </head>
   <body>
     <header>
-      <details open>
-        <summary>360 Photos</summary>
+        <H3>AIScape Scenes</H3>
         <p>
-          This sample demonstrates displaying a 360 degree equirectangular stereo
-          photo. It intentionally suppresses view position to ensure that the user
-          cannot move out of the photo sphere.
+          Escape to an AI-generate scene in WebXR.
         </p>
+        <details>
+          <summary>What is this?</summary>
+          <p>This is </p>
+          <h3>Adding a new scene</h3>
+          <ol>
+            <li><a href='https://skybox.blockadelabs.com/' target="_blank">Go to Blockade Labs and generate a new landscape</a></li>
+            <li>Download the <b>Equirectangular image</b>, either png or jpg</li>
+            <li>Upload the image to the <b>landscapes</b> folder</li>
+            <li>Add the scene to the <b>scenes</b> array in <b>index.html</b></li>
+            <li>Create a pull request</li>
+          </ol>
+        </details>
         <h4>Available Scenes</h4>
         <ul id='scenes'></ul>
-      </details>
     </header>
     <script type="module">
       import {WebXRButton} from './js/util/webxr-button.js';
@@ -62,6 +70,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           url: 'landscapes/trees.jpeg',
           title: 'Tree crown',
         },
+        {
+          url: 'landscapes/solarpunk.png',
+          title: 'Solarpunk Landscape',
+        }
       ];
 
       const pickedSceneFile = QueryArgs.getString('scene', 'random' );
