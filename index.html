@@ -95,6 +95,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       let gl = null;
       let renderer = null;
       let scene = new Scene();
+      // Disable FPS Viewer
+      scene.enableStats(false);
       scene.addNode(new SkyboxNode({
         url: pickedScene.url,
         displayMode: 'mono'
